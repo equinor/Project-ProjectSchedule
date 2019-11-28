@@ -1,0 +1,67 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "ProjectSchedule",
+        "description": "",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://api-dev.gateway.equinor.com/project/projectschedule"
+        }
+    ],
+    "paths": {
+        "/marineplanning": {
+            "get": {
+                "summary": "MarinePlanning",
+                "description": "MarinePlanning",
+                "operationId": "marineplanning",
+                "parameters": [
+                    {
+                        "name": "net_id",
+                        "in": "query",
+                        "description": "network",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "samplefield": "test"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "apiKeyHeader": {
+                "type": "apiKey",
+                "name": "Ocp-Apim-Subscription-Key",
+                "in": "header"
+            },
+            "apiKeyQuery": {
+                "type": "apiKey",
+                "name": "subscription-key",
+                "in": "query"
+            }
+        }
+    },
+    "security": [
+        {
+            "apiKeyHeader": []
+        },
+        {
+            "apiKeyQuery": []
+        }
+    ]
+}
