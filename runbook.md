@@ -1,19 +1,34 @@
-# Operational Runbook
-
+# {Data flow name} Operational Runbook
 ## Introduction
+This runbook captures underlying requirements and provides the complete operational documentation of the {Data flow name}. 
+
+The {Data flow name} data flow... *[brief summary of functionality including key systems, flow and access interface]*.
 
 ### Purpose
-This runbook provides the complete operational documentation of the {Data flow name} data flow. 
 
-The document should be used to understand how the system is configured and functions, including how to perform system administrative tasks. The primary audience for this document are personnel responsible for managing and operating the system. 
+This document should be used to understand how the system is configured and functions, including how to perform system administrative tasks. The primary audience for this document are personnel responsible for managing and operating the system and consumers wanting additional insight. 
 
-### Scope
+### Authoring Guidelines
 
-#### Functionality
+To assist in filling out the runbook correctly, the following applies: 
 
-The {Data flow name} data flow transfers... *[brief summary of functionality]*.
 
-#### Overview
+* *Use this as a working document and aim to capture information and decisions as you go along to help guide the design and implementation. In particular the 'Overview' and 'Solution Requirements & Specification' sections should be completed as early as possible*
+* *Italicized text throughout the template is provided as background information to assist in creating the document. In the final version of the document, this text must be removed and/or replaced by system-specific information.*
+* Existing chapters or subchapters shall not be deleted. If a subchapter is considered irrelevant for the system, this must be specified in the body text of the subchapter.  
+* New subchapters can be added as required. When doing so, the table of contents must be updated. 
+* Linking to SOPs and information stored in other systems is encouraged.  
+* No sensative or confidential information shall be entered in the runbook itself (although referenced SOPs, with appropriate access control, can contain this type of information). This limitation applies to passwords etc. that should be held in a secured key vault.
+
+### Legal
+
+This document contains information that is proprietary to Equinor ASA. Neither the document nor the information contained therein should be disclosed or reproduced in whole or in part, without express written consent of Equinor ASA.  
+
+The document and the information it contains shall be handled according to Equinor’s information classification scheme. 
+
+## Overview
+
+> :warning: THIS SECTION IS A WORK IN PROGRESS!
 
 Source Type: *[Source Type]*
 
@@ -33,31 +48,95 @@ Gateway: *[System component name]*
 
 DevOps Organisation: *[DevOps Organisation name]*
 
-#### Components
+## Solution Requirements & Specification
 
-The main components of the Data flow name data flow are: 
+> :warning: THIS SECTION IS A WORK IN PROGRESS!
 
-* *[list the main components]*
+This section captures key decisions and information relating to the design of the data flow / data share. All new data flows should adhere to the recommendations defined in the Enterprise Data Architecture and other governing documentation.
 
-#### Design Notes
+### General
 
-*[Any notes about the data flow design.]*
+**What type(s) of data needs to be transferred to OMNIA? Provide a brief description.**
 
-### Authoring Guidelines
+**Has any necessary LRA been performed for making the data available and if necessary for usage, and what is the reference?**
 
-To assist in filling out the runbook correctly, the following applies: 
+**What Data Area does the data belong to?**
 
-* *Italicized text throughout the template is provided as background information to assist in creating the document. In the final version of the document, this text must be removed and/or replaced by system-specific information.*
-* Existing chapters or subchapters shall not be deleted. If a subchapter is considered irrelevant for the system, this must be specified in the body text of the subchapter.  
-* New subchapters can be added as required. When doing so, the table of contents must be updated. 
-* Linking to SOPs and information stored in other systems is encouraged.  
-* No sensative or confidential information shall be entered in the runbook itself (although referenced SOPs, with appropriate access control, can contain this type of information). This limitation applies to passwords etc. that should be held in a secured key vault.
+*[[Data areas](https://eita.equinor.com/companyea/?oid=bd7e452f-a8be-43f7-86fa-9513b8ce95a9) form the basis for naming, ownership and more]*
 
-### Legal
+**What is the master data source from where data should be referenced?**
 
-This document contains information that is proprietary to Equinor ASA. Neither the document nor the information contained therein should be disclosed or reproduced in whole or in part, without express written consent of Equinor ASA.  
+**Describe the lineage of data and how this might impact usage?**
 
-The document and the information it contains shall be handled according to Equinor’s information classification scheme. 
+**What is the data format/interface (e.g. Oracle DB, SQL DB, API)?**
+
+**Are there several instances (e.g. databases) of the system(s)? If Yes, should data in any other instance(s) also be collected?**
+
+**Do you know of any other systems in use by Equinor containing the same type(s) of data? If Yes, should the data from these systems also be collected?**
+
+**Which format should the data have in OMNIA after transfer (e.g. DB or file type)?**
+
+### Contents
+
+**Is any data model/documentation available? If Yes, provide link(s) to relevant model(s)/documentation.**
+
+**Are any of the data included affected by the General Data Protection Regulation (GDPR)? If Yes, describe which data.**
+
+**Are there any specific expectations as to the format, structure or contents of the data?**
+
+**What fields and sources for master data are available?**
+
+**What queries and operations are being offered?**
+
+*e.g. Create, Read, Update, Delete, GetXxx*
+
+??**What expectations do you have in relation to data quality, including but not limited to the contents, missing data, validation and transformation**
+
+??**Will you consume the data in it's entirety, or only a subset?**
+
+*e.g. a particular time period, a particular asset*
+
+??**Will you be aggregating the data, and if so at what level of aggregation / granularity?**
+
+??**Do you need access to older version of the data?**
+
+??*if copying how to ensure multiple updates between individual copies are recorded*
+
+### Communication
+
+??**What are the preferred and maximum times you can wait before updates (either through the original application, your application or elsewhere) are reflected in returned data?**
+
+??**How do you hope to access the data (note API first guidelines)**?
+
+e.g. API, DB query, File, Queue, ...
+
+How often should the data be refreshed in OMNIA (e.g. hourly, daily, weekly)?	
+
+Should data deleted in the source after transfer also be deleted in OMNIA?	
+
+For how long should any time series of the data be available in OMNIA?	
+
+What is the estimated size of the data set added on a refresh (delta load)?	
+
+What is the estimated size of the maximum/full data set to be transferred?	
+
+Does the data source include data about when it was last updated?	
+
+Should any filters be applied before the transfer?
+
+++ Copy provenance and missing updates between copies
+
+### Lifecycle
+
+**Do you have any particular operational SLA requirements?**
+
+**Do you need any notifications or alerting and if so what for?**
+
+e.g. on specific errors, non-triggered events, end-to-end, ... 
+
+**Do you have requirements outside the specified data share deprecation policy**
+
+
 
 ## Architecture
 
@@ -66,6 +145,16 @@ The document and the information it contains shall be handled according to Equin
 The main components in the system architecture are described in the table below. All components are OMNIA resources, with the exception of the *[summary of the exception(s)]*: 
 
 *[paste system diagram here]*
+
+#### Components
+
+The main components of the {Data flow name} data flow are: 
+
+* *[list the main components]*
+
+#### Design Notes
+
+*[Any notes about the data flow design.]*
 
 #### *[Component Type]*
 ##### *[Feature]*

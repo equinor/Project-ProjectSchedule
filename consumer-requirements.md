@@ -58,7 +58,9 @@ e.g. on specific errors, non-triggered events, end-to-end, ...
 
 ## Other
 
-Whilst not specifically requirements for the data share, you should also considerhow it fits as part of your system. Amongst other points, yo umight consider:
+Whilst not specifically requirements for the data share, you should also consider how it fits as part of your system. Amongst other points, you might consider:
 
 * Handling and impact of unavailability of the share
 * Handling and impact of missing, delayed or corrupted data
+
+*This document is based upon a template from: https://github.com/equinor/data-engineering*
