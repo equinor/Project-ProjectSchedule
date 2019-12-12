@@ -8,12 +8,14 @@ All new data shares should adhere to the recommendations defined in the Enterpri
 
 ## General
 
+**What type of data object are you interested in?**
+
 **Has any necessary LRA been performed for using this data, and what is the reference?**
 
 **Are you familiar with the lineage of the data, up-to and including the data share, and how this might impact usage?**
 
 
-## Contents
+## Data Content
 
 **Are there any specific expectations as to the format, structure or contents of the data?**
 
@@ -27,9 +29,9 @@ All new data shares should adhere to the recommendations defined in the Enterpri
 
 *e.g. a particular time period, a particular asset*
 
-**Will you be aggregating the data, and if so at what level of aggregation / granularity?**
+**Will you be aggregating the data, and if so at what level of granularity?**
 
-**Do you need access to older version of the data?**
+**Do you need access to older versions of the data?**
 
 
 ## Communication
@@ -62,5 +64,6 @@ Whilst not specifically requirements for the data share, you should also conside
 
 * Handling and impact of unavailability of the share
 * Handling and impact of missing, delayed or corrupted data
+* ...
 
 *This document is based upon a template from: https://github.com/equinor/data-engineering*
