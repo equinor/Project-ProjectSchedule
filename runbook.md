@@ -92,7 +92,7 @@ This section captures key decisions and information relating to the design of th
 
 ??**What expectations do you have in relation to data quality, including but not limited to the contents, missing data, validation and transformation**
 
-??**Will you consume the data in it's entirety, or only a subset?**
+??**Will you provide the source data in it's entirety, or only a subset?**
 
 *e.g. a particular time period, a particular asset*
 
@@ -109,6 +109,8 @@ This section captures key decisions and information relating to the design of th
 ??**How do you hope to access the data (note API first guidelines)**?
 
 e.g. API, DB query, File, Queue, ...
+
+??**Performance considerations or limitations that might affect the frequency, query pattern or volue of data returned?**
 
 How often should the data be refreshed in OMNIA (e.g. hourly, daily, weekly)?	
 
