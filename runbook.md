@@ -53,10 +53,17 @@ DevOps Organisation: *[DevOps Organisation name]*
 > :warning: THIS SECTION IS A WORK IN PROGRESS!
 
 This section captures key decisions and information relating to the design of the data flow / data share. All new data flows should adhere to the recommendations defined in the Enterprise Data Architecture and other governing documentation.
+### Consumer
 
-### General
+Link to seperate consumer requirements documents..
 
-**What type(s) of data needs to be transferred to OMNIA? Provide a brief description.**
+**What are the data needs ? Provide a brief description.**
+
+**What is the data format/interface (e.g. Oracle DB, SQL DB, API)?**
+(Reformulate in terms of requirement and from documentation perspective)
+
+
+### Equinor
 
 **Has any necessary LRA been performed for making the data available and if necessary for usage, and what is the reference?**
 
@@ -67,6 +74,16 @@ This section captures key decisions and information relating to the design of th
 **What is the master data source from where data should be referenced?**
 
 **Describe the lineage of data and how this might impact usage?**
+Add for making this available.
+
+**Are any of the data included affected by the General Data Protection Regulation (GDPR)? If Yes, describe which data.**
+
+**Are there any specific expectations as to the format, structure or contents of the data?**
+++ enterprise data format, master data, etc...
+
+**What fields and sources for master data are available?**
+
+### Backend System
 
 **What is the data format/interface (e.g. Oracle DB, SQL DB, API)?**
 
@@ -74,17 +91,12 @@ This section captures key decisions and information relating to the design of th
 
 **Do you know of any other systems in use by Equinor containing the same type(s) of data? If Yes, should the data from these systems also be collected?**
 
-**Which format should the data have in OMNIA after transfer (e.g. DB or file type)?**
-
-### Contents
-
 **Is any data model/documentation available? If Yes, provide link(s) to relevant model(s)/documentation.**
 
-**Are any of the data included affected by the General Data Protection Regulation (GDPR)? If Yes, describe which data.**
 
-**Are there any specific expectations as to the format, structure or contents of the data?**
+## Solution Design
 
-**What fields and sources for master data are available?**
+**Which format should the data have in OMNIA after transfer (e.g. DB or file type)?**
 
 **What queries and operations are being offered?**
 
@@ -102,9 +114,12 @@ This section captures key decisions and information relating to the design of th
 
 ??*if copying how to ensure multiple updates between individual copies are recorded*
 
-### Communication
+### Architecture
 
 ??**What are the preferred and maximum times you can wait before updates (either through the original application, your application or elsewhere) are reflected in returned data?**
+
+
+> :warning: Move the below to the above sections.
 
 ??**How do you hope to access the data (note API first guidelines)**?
 
