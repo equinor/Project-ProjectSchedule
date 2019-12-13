@@ -1,6 +1,6 @@
 # {Data flow name} Operational Runbook
 ## Introduction
-This runbook captures underlying requirements and provides the complete operational documentation of the {Data flow name}. 
+This runbook captures underlying requirements and provides the complete operational documentation of the {Data flow name} data flow. When we refer to the term *data flow*, we include all aspects of a data solution from source system through exposure via an API or otherwise. 
 
 The {Data flow name} data flow... *[brief summary of functionality including key systems, flow and access interface]*.
 
@@ -48,24 +48,25 @@ Gateway: *[System component name]*
 
 DevOps Organisation: *[DevOps Organisation name]*
 
-## Solution Requirements & Specification
+## Requirements & Specification
 
 > :warning: THIS SECTION IS A WORK IN PROGRESS!
 
-This section captures key decisions and information relating to the design of the data flow / data share. All new data flows should adhere to the recommendations defined in the Enterprise Data Architecture and other governing documentation.
+This section captures key requirements and decisions and that impact the design of the data flow. All solutions need to consider 3 perspectives - the consumer, the enterprise, and relevant backend systems. All new data flows should also adhere to recommendations defined in the Enterprise Data Architecture and other governing documentation.
+
+*[Please include any relevant reasoning or assumptions behind answers.]*
+
 ### Consumer
 
-Link to seperate consumer requirements documents..
+**Provide links to documents containing relevant consumer requirements**
 
-**What are the data needs ? Provide a brief description.**
+*[There is [a template](https://github.com/equinor/data-engineering/blob/master/docs/Consumer%20Requirements.md) for capturing these requirements on the [data engineering git repository](https://github.com/equinor/data-engineering).]*
 
-**What is the data format/interface (e.g. Oracle DB, SQL DB, API)?**
-(Reformulate in terms of requirement and from documentation perspective)
-
-
-### Equinor
+### Enterprise
 
 **Has any necessary LRA been performed for making the data available and if necessary for usage, and what is the reference?**
+
+*[See the [legal risk assessment service](https://equinor.service-now.com/selfservice?id=kb_article&sys_id=c5acb55fdb610c94c293199f299619dd)]*
 
 **What Data Area does the data belong to?**
 
@@ -74,86 +75,92 @@ Link to seperate consumer requirements documents..
 **What is the master data source from where data should be referenced?**
 
 **Describe the lineage of data and how this might impact usage?**
-Add for making this available.
 
 **Are any of the data included affected by the General Data Protection Regulation (GDPR)? If Yes, describe which data.**
 
 **Are there any specific expectations as to the format, structure or contents of the data?**
-++ enterprise data format, master data, etc...
 
-**What fields and sources for master data are available?**
+**What fields and sources for master and reference data are available?**
+
+**Should an audit log of changes to the data be kept for reproducability, traceability or other purposes?**
 
 ### Backend System
 
-**What is the data format/interface (e.g. Oracle DB, SQL DB, API)?**
+**What is the data format of the source data**
 
-**Are there several instances (e.g. databases) of the system(s)? If Yes, should data in any other instance(s) also be collected?**
+**What technologies and interfaces are available for interacting with the  source data (e.g. Oracle DB / SQL DB, table / view / API), and what architecture patterns do they allow (e.g. ingest / copy, virtualisation, pull / push, ...)?**
+
+**How scalable are these interfaces and are there performance considerations or limitations that might affect the frequency, query pattern or volume of data returned?**
+
+**Are there several instances of the system(s)? If Yes, should data in any other instance(s) also be collected?**
 
 **Do you know of any other systems in use by Equinor containing the same type(s) of data? If Yes, should the data from these systems also be collected?**
 
 **Is any data model/documentation available? If Yes, provide link(s) to relevant model(s)/documentation.**
 
+**Does the data source include data about when entities were last updated?**
 
 ## Solution Design
 
-**Which format should the data have in OMNIA after transfer (e.g. DB or file type)?**
+### General
 
 **What queries and operations are being offered?**
 
 *e.g. Create, Read, Update, Delete, GetXxx*
 
-??**What expectations do you have in relation to data quality, including but not limited to the contents, missing data, validation and transformation**
+### Data
 
-??**Will you provide the source data in it's entirety, or only a subset?**
+**Which format should the data have in OMNIA after transfer (e.g. DB or file type)?**
+
+**How will the data be modified, including but not limited to the contents, missing data, validation and transformation?**
+
+**Will you provide the source data in it's entirety, or only a subset?**
 
 *e.g. a particular time period, a particular asset*
 
-??**Will you be aggregating the data, and if so at what level of aggregation / granularity?**
+**Will you be aggregating the data, and if so at what level of aggregation / granularity?**
 
-??**Do you need access to older version of the data?**
+**If you need to mainitaing a full audit log / historical changes, how will this be done?**
 
-??*if copying how to ensure multiple updates between individual copies are recorded*
+*Note: when copying data how to make sure multiple updates within the source system between subsequent copies are recorded.*
 
 ### Architecture
 
-??**What are the preferred and maximum times you can wait before updates (either through the original application, your application or elsewhere) are reflected in returned data?**
+**Through what type of interface will the data be made available (note data architecture and API first guidelines)?**
 
+e.g. API, DB view, File, Queue, ...
 
-> :warning: Move the below to the above sections.
+**What partitioning requirements should be implemented for the data?**
 
-??**How do you hope to access the data (note API first guidelines)**?
+**What high level architecture(s) pattern will the data flow follow?** 
 
-e.g. API, DB query, File, Queue, ...
+e.g. copy, virtualisation, streaming, ...
 
-??**Performance considerations or limitations that might affect the frequency, query pattern or volue of data returned?**
+**What caching is implemented and how might this affect consumers?**
 
-How often should the data be refreshed in OMNIA (e.g. hourly, daily, weekly)?	
+#### Considerations when copying data
 
-Should data deleted in the source after transfer also be deleted in OMNIA?	
+**How often will the transfer of data occur**
 
-For how long should any time series of the data be available in OMNIA?	
+**What is the estimated size of the data during each update and what possibilities are there for doing a delta copy?**
 
-What is the estimated size of the data set added on a refresh (delta load)?	
+**How long is each copy operation estimated to take**
 
-What is the estimated size of the maximum/full data set to be transferred?	
+**Is there a plan for any initial loading of data?**
 
-Does the data source include data about when it was last updated?	
-
-Should any filters be applied before the transfer?
-
-++ Copy provenance and missing updates between copies
+**If all changes need to be recorded and preserved, how will updates between copy operations be preserved?**
 
 ### Lifecycle
 
-**Do you have any particular operational SLA requirements?**
+**Who owns the data flow?**
 
-**Do you need any notifications or alerting and if so what for?**
+**What operational SLA is being offered?**
+
+**What notifications and alerting are to beimplemented if so what for?**
 
 e.g. on specific errors, non-triggered events, end-to-end, ... 
 
-**Do you have requirements outside the specified data share deprecation policy**
-
-
+**What is the deprecation policy for the data flow**
 
 ## Architecture
 

@@ -40,7 +40,9 @@ All new data shares should adhere to the recommendations defined in the Enterpri
 
 **Can you further optimise the querying of data through additional architecture layers?**
 
-**What are the preferred and maximum times you can wait before updates (either through the original application, your application or elsewhere) are reflected in returned data?**
+**What are the preferred and maximum times you can wait before updates (originating from the original source, your application or elsewhere) are reflected in returned data?**
+
+*Specify relative to the full lineage of the data, including any delay caused by manual steps* 
 
 **How do you hope to access the data (note API first guidelines)**?
 
