@@ -12,8 +12,7 @@ This document should be used to understand how the system is configured and func
 
 To assist in filling out the runbook correctly, the following applies: 
 
-
-* *Use this as a working document and aim to capture information and decisions as you go along to help guide the design and implementation. In particular the 'Overview' and 'Solution Requirements & Specification' sections should be completed as early as possible*
+* *Use this as a working document and aim to capture information and decisions as you go along to help guide the design and implementation. In particular the 'Overview' and 'Solution Requirements & Specification' sections should be completed as early as possible. The data owner should be closely involved in this procress.*
 * *Italicized text throughout the template is provided as background information to assist in creating the document. In the final version of the document, this text must be removed and/or replaced by system-specific information.*
 * Existing chapters or subchapters shall not be deleted. If a subchapter is considered irrelevant for the system, this must be specified in the body text of the subchapter.  
 * New subchapters can be added as required. When doing so, the table of contents must be updated. 
@@ -32,25 +31,41 @@ The document and the information it contains shall be handled according to Equin
 
 Source Type: *[Source Type]*
 
+Safran Planner
+
 Transfer Type: *[​Full|Delta]*
+
+Full
 
 Transfer Frequency: *[​​Weekly/Daily/Hourly/(higher frequency)]*
 
+Hourly
+
 Transfer ​Orchestration: *[​System component type]*
+
+???
 
 ​Destination: *[​OMNIA component type(s)]* 
 
+Datalake, SQL Database
+
 ​Criticality: *[​High|Medium|Low]*
+
+??? LRA / BII
 
 ​Security classification: *[​Open|Internal|Restricted|Confidential]*
 
+??? LRA / BII
+
 Gateway: *[System component name]*
+
+??? Integration Runtime (move elsewhere)
 
 DevOps Organisation: *[DevOps Organisation name]*
 
-## Requirements & Specification
+??? To Follow
 
-> :warning: THIS SECTION IS A WORK IN PROGRESS!
+## Requirements & Specification
 
 This section captures key requirements and decisions and that impact the design of the data flow. All solutions need to consider 3 perspectives - the consumer, the enterprise, and relevant backend systems. All new data flows should also adhere to recommendations defined in the Enterprise Data Architecture and other governing documentation.
 
@@ -62,27 +77,54 @@ This section captures key requirements and decisions and that impact the design 
 
 *[There is [a template](https://github.com/equinor/data-engineering/blob/master/docs/Consumer%20Requirements.md) for capturing these requirements on the [data engineering git repository](https://github.com/equinor/data-engineering).]*
 
+> :warning: LINK IN COMPLETED DOCUMENT FOR DIGITAL TWIN / MARINE PLANNING!
+
 ### Enterprise
 
 **Has any necessary LRA been performed for making the data available and if necessary for usage, and what is the reference?**
 
 *[See the [legal risk assessment service](https://equinor.service-now.com/selfservice?id=kb_article&sys_id=c5acb55fdb610c94c293199f299619dd)]*
 
+> :warning: To complete
+
 **What Data Area does the data belong to?**
 
 *[[Data areas](https://eita.equinor.com/companyea/?oid=bd7e452f-a8be-43f7-86fa-9513b8ce95a9) form the basis for naming, ownership and more]*
 
-**What is the master data source from where data should be referenced?**
+Level 1: Project
+Level 2: Project Schedule
 
-**Describe the lineage of data and how this might impact usage?**
+**Describe the lineage of data?**
+
+*[Individual fields might come from different sources so there might be multiple lineage paths. It might be worth consulting an enterprise data architect if needed to understand the full lineage]*
+
+???User Input - Safran
+
+> :warning: Check with Safran
+
+**What are the data sources within the above lineage from where data should be copied from / referenced and why are thse specific sources chosen ?**
 
 **Are any of the data included affected by the General Data Protection Regulation (GDPR)? If Yes, describe which data.**
 
-**Are there any specific expectations as to the format, structure or contents of the data?**
+*[This might be defined in the BII]*
+
+No
+
+**Are there any specific expectations as to the format, structure or contents of the exposed data?**
+
+*[Ideally internationally recognised standards should be used. If there are no recognised standards then please state this and aim to follow recognised best practices for enterprise data]*
+
+> :warning: ???
 
 **What fields and sources for master and reference data are available?**
 
-**Should an audit log of changes to the data be kept for reproducability, traceability or other purposes?**
+> :warning: Check with data owner / EDM
+
+**Should an log of changes to the data be kept for reproducability, traceability and are there constraints in the source systems that might make this difficult?**
+
+[*Shapshots at a specific time interval v's a record of all changes that occur, even between such snapshots]*
+
+> :warning: Possibly in the data lake, but need to check
 
 ### Backend System
 
@@ -107,6 +149,11 @@ This section captures key requirements and decisions and that impact the design 
 **What queries and operations are being offered?**
 
 *e.g. Create, Read, Update, Delete, GetXxx*
+
+
+
+TODO: Lineage - and how this might impact usage
+
 
 ### Data
 
