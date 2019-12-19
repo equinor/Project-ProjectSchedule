@@ -128,36 +128,55 @@ No
 
 ### Backend System
 
-**What is the data format of the source data**
+**Is all data needed available and where can it be found**
+
+Safran Planner 
+
+> :warning: Add specific instances / tables
 
 **What technologies and interfaces are available for interacting with the  source data (e.g. Oracle DB / SQL DB, table / view / API), and what architecture patterns do they allow (e.g. ingest / copy, virtualisation, pull / push, ...)?**
 
+SQl Server tables (??Use View??)
+
 **How scalable are these interfaces and are there performance considerations or limitations that might affect the frequency, query pattern or volume of data returned?**
+
+> :warning: Need answer from Safran
 
 **Are there several instances of the system(s)? If Yes, should data in any other instance(s) also be collected?**
 
-**Do you know of any other systems in use by Equinor containing the same type(s) of data? If Yes, should the data from these systems also be collected?**
+There are multiple Safran Planners. For the current scope no other instances are needed.
+
+**Do you know of any other systems in use by Equinor containing the same type(s) of data either the desired data types, or related master / reference data? If Yes, should the data from these systems also be collected?**
+
+> :warning: Possibly master / reference data. Data Area Owner to answer if planning data is held elsewhere.
 
 **Is any data model/documentation available? If Yes, provide link(s) to relevant model(s)/documentation.**
 
+> :warning: To checkup
+
 **Does the data source include data about when entities were last updated?**
+
+No!
 
 ## Solution Design
 
 ### General
 
-**What queries and operations are being offered?**
+**What queries and operations are being offered to the consumer?**
 
 *e.g. Create, Read, Update, Delete, GetXxx*
 
+Read of marine planning entries filtered upon installation.
 
 
-TODO: Lineage - and how this might impact usage
+**TODO: Lineage - and how this might impact usage**
 
 
 ### Data
 
 **Which format should the data have in OMNIA after transfer (e.g. DB or file type)?**
+
+
 
 **How will the data be modified, including but not limited to the contents, missing data, validation and transformation?**
 
