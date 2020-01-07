@@ -158,7 +158,7 @@ There are multiple Safran Planners. For the current scope no other instances are
 
 No!
 
-## Solution Design
+## Decision Log
 
 ### General
 
