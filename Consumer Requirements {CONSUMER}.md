@@ -10,7 +10,7 @@ All new data shares should adhere to the recommendations defined in the Enterpri
 
 **What type of data object are you interested in?**
 
-*[If you have any information about what this data can be retrieved from please include details]*
+*[Please be as specific as possible. If you have any information about what this data can be retrieved from please include details]*
 
 * Marine Operations Plan (possibly also called marine planning) for Johan Casberg, ref word document 
 * Want johan sverdrup in next phase 
@@ -38,11 +38,13 @@ Tobias checking for common standards for marine planing
 
 **What queries and operations are you expecting to be able to perform?**
 
-*e.g. Create, Read, Update, Delete, GetXxx*
+*[e.g. Create, Read, Update, Delete, GetXxx]*
 
 Read
 
 **What expectations do you have in relation to data quality, including but not limited to the contents, missing data, validation and transformation**
+
+*[Should any changes from the 'source' system be applied. See the point on lineage below as there may be multiple systems the data passes through]*
 
 Do not have high expectations 
 
@@ -52,7 +54,7 @@ Expect to get the last time data was updated from source
 
 **Will you consume the data in it's entirety, or only a subset?**
 
-*e.g. particular fields, a particular time period, a particular asset*
+*[e.g. particular fields, a particular time period, a particular asset]*
 
 In its entirety for the given assets
 
@@ -64,13 +66,17 @@ Scenario 2 only need 3 values map_id, ? ?
 
 May aggregate, store result, combine result with map hub query to get geo-graphical location, will be stored in local database for full data object 
 
-**Do you need access to older versions of the data?**
+**For data that can be modified, do you need access to older versions of the data?**
+
+*[Do you need access to older versions of data objects to see possible changes, or is it sufficient to just see the latest entry]*
 
 No from both scenarios
 
 ## Communication
 
-**How will you query the specified operations in terms of frequency and expected request / response size?**
+**How will you query the specified operations in terms of 1) frequency and 2) expected request / response size?**
+
+*[Please specify for every operation and mode of querying]*
 
 * Query every 5 minutes or even every minute 
 * Fetch the full dataset 
@@ -82,7 +88,7 @@ The application will cache the data and wont necessarylity affect our service
 
 **What are the preferred and maximum times you can wait before updates (originating from the original source, your application or elsewhere) are reflected in returned data?**
 
-*Specify relative to the full lineage of the data, including any delay caused by manual steps* 
+*[Specify relative to the full lineage of the data, including any delay caused by manual steps]*
 
 If possible every 5 minutes or every minute from Safran
 Exit criteria is less than nightly updates 
@@ -101,7 +107,7 @@ Short outages will not affect end users, because they store data in application
 
 Try again in 10 minutes is ok. 
 
-**Do you need any notifications or alerting and if so what for?**
+**Do you need any notifications or alerting and if so what for and under what conditions?**
 
 *[e.g. on specific errors, non-triggered events, end-to-end, ... ]*
 
@@ -116,9 +122,11 @@ Difficult to know now…
 
 ## Other
 
-Whilst not specifically requirements for the data share, you should also consider how it fits as part of your system. Amongst other points, you might consider:
+Whilst not specifically requirements for the data share, you should also consider how it will fit as a part of your wider system. Amongst other points, you might consider:
 
 **The lineage of the data and how this might impact usage?**
+
+*[Do you know all the steps that data takes from when it is produced, including physical, electronic and otherwise and what adverse situations can occur across all of these?]*
 
 * Talked to Line on Safran, day to day responsible for marine planning for Castberg 
 * Manual operation to get into safran 
@@ -128,8 +136,14 @@ Tagnumber, stid number, may come from drop down lists and free text fields.
 
 **Handling and impact of unavailability of the share**
 
+*[How will you handle unavailability of the share and what impact will this have on your system. Are alternative needed incase of downtime?]*
+
 **Handling and impact of missing, delayed or corrupted data**
 
+*[What impact might this have and how will you detect, and handle such data?]*
+
 **...other**
+
+*[Anything else that you can think of that might be relevant?]*
 
 *This document is based upon a template from: https://github.com/equinor/data-engineering*
