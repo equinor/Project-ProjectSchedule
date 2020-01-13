@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using project.schedule.Data;
 using project.schedule.Services.Authorization;
 using ProjectSchedule.Services;
 using System.Collections.Generic;
@@ -33,7 +35,7 @@ namespace ProjectSchedule
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("Reader", policy => policy.Requirements.Add(new ScopeRequirement(new List<string> { "Project.Read" })));
+                options.AddPolicy("Reader", policy => policy.Requirements.Add(new ScopeRequirement(new List<string> { "Project.Read" }, new List<string> { "Project.Read" })));
             });
 
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Project Schedule", Version = "v1" }));
@@ -41,6 +43,8 @@ namespace ProjectSchedule
 
             services.AddScoped<AuthenticationMockService>();
             services.AddTransient<IAuthorizationHandler, ScopeRequirementHandler>();
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,28 +7,28 @@ namespace ProjectSchedule.Models.MarinePlanning
 {
     public class System
     {
-        public string no { get; set; }
-        public string link { get; set; }
+        public string No { get; set; }
+        public string Link { get; set; }
     }
 
     public class Tags
     {
-        public string id { get; set; }
-        public string link { get; set; }
+        public string Id { get; set; }
+        public string Link { get; set; }
     }
     
     public class Map
     {
-        public string id { get; set; }
-        public string link { get; set; }
+        public string Id { get; set; }
+        public string Link { get; set; }
     }
     
     public class MarinePlanEntry
     {
         public string ActivityNumber { get; set; }
         public string Description { get; set; }
-        public string Start { get; set; }
-        public string Finish { get; set; }
+        public DateTime? Start { get; set; }
+        public DateTime? Finish { get; set; }
         public string VesselName { get; set; }
         public string VesselType { get; set; }
         public string ProContractor { get; set; }

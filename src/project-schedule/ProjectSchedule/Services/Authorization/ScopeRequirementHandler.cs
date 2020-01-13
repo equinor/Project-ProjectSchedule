@@ -10,23 +10,46 @@ namespace project.schedule.Services.Authorization
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ScopeRequirement requirement)
         {
-            if (context.User.FindFirst("http://schemas.microsoft.com/identity/claims/scope") == null)
-            {
-                return Task.CompletedTask;
-            }
 
-            var scopes = context.User.FindFirst(c => c.Type.Contains("http://schemas.microsoft.com/identity/claims/scope")).Value.Split(" ");
-
-            var isAuthorized = true;
-            foreach (var scope in requirement.RequiredScopes)
+            var scopeClaim = context.User.FindFirst(c => c.Type.Contains("http://schemas.microsoft.com/identity/claims/scope"));
+            if (scopeClaim != null)
             {
-                if (!scopes.Contains(scope))
+                var scopes = scopeClaim.Value.Split(" ");
+
+                if (scopes.Length > 0)
                 {
-                    isAuthorized = false;
+                    var isAuthorized = true;
+                    foreach (var scope in requirement.RequiredScopes)
+                    {
+                        if (!scopes.Contains(scope))
+                        {
+                            isAuthorized = false;
+                        }
+                    }
+                    if (isAuthorized) context.Succeed(requirement);
+                    return Task.CompletedTask;
                 }
             }
-            if (isAuthorized) context.Succeed(requirement);
 
+            var roleClaim = context.User.FindAll(c => c.Type.Contains("http://schemas.microsoft.com/ws/2008/06/identity/claims/role"));
+            if (roleClaim != null)
+            {
+                var roles = roleClaim.Select(s => s.Value).ToList();
+
+                if (roles.Count > 0)
+                {
+                    var isAuthorized = true;
+                    foreach (var scope in requirement.RequiredRoles)
+                    {
+                        if (!roles.Contains(scope))
+                        {
+                            isAuthorized = false;
+                        }
+                    }
+                    if (isAuthorized) context.Succeed(requirement);
+                    return Task.CompletedTask;
+                }
+            }
             return Task.CompletedTask;
         }
     }
