@@ -56,9 +56,9 @@ namespace ProjectSchedule.Controllers
                         VesselType = s.VesselType,
                         ProContractor = s.ProContractor,
                         StartTagNumber = s.StartTagNumber,
-                        InstalledTags = s.InstalledTags != null ? new Tags[] { new Tags {Id = s.InstalledTags, Link = LinkHelper.GetLink(typeof(Tags), s.InstalledTags) } } : null,
-                        System = s.SystemNumber != null ? new Models.MarinePlanning.System { No = s.SystemNumber, Link = LinkHelper.GetLink(typeof(Models.MarinePlanning.System), s.SystemNumber) } : null,
-                        Map = s.MapId != null ? new Map { Id = s.MapId, Link = LinkHelper.GetLink(typeof(Map), s.MapId) } : null,
+                        InstalledTags = s.InstalledTags != null ? new Tags[] { new Tags {Id = s.InstalledTags, Link = LinkHelper.GetLink(typeof(Tags), s.InstalledTags, id) } } : null,
+                        System = s.SystemNumber != null ? new Models.MarinePlanning.System { No = s.SystemNumber, Link = LinkHelper.GetLink(typeof(Models.MarinePlanning.System), s.SystemNumber, id) } : null,
+                        Map = s.MapId != null ? new Map { Id = s.MapId, Link = LinkHelper.GetLink(typeof(Map), s.MapId, id) } : null,
                         InstalledComponents = s.InstalledComponents != null ? new string[] { s.InstalledComponents} : null,
                         PositionTagNumbers = s.PositionTagNumbers != null ? new string[] { s.PositionTagNumbers } : null
                     };
