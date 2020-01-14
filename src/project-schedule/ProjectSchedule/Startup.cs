@@ -35,7 +35,7 @@ namespace ProjectSchedule
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("Reader", policy => policy.Requirements.Add(new ScopeRequirement(new List<string> { "Project.Read" }, new List<string> { "Project.Read" })));
+                options.AddPolicy("Reader", policy => policy.Requirements.Add(new ScopeRequirement(new List<string> { "Project.Read" }, new List<string> { "Project.Reader" })));
             });
 
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Project Schedule", Version = "v1" }));
