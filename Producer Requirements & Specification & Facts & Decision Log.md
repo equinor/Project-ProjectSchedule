@@ -16,18 +16,18 @@ This section captures key requirements and decisions and that impact the design 
 
 **Has any necessary LRA been performed for making the data available and if necessary for usage, and what is the reference?**
 
-*[See the [legal risk assessment service](https://equinor.service-now.com/selfservice?id=kb_article&sys_id=c5acb55fdb610c94c293199f299619dd)]*
+*[See the [legal risk assessment service](https://equinor.service-now.com/selfservice?id=kb_article&sys_id=c5acb55fdb610c94c293199f299619dd)]. In this service you can also ask questions about possible existing LRA's that might be in place*
 
 > :warning: To complete
 
 **What Data Area does the data belong to?**
 
-*[[Data areas](https://eita.equinor.com/companyea/?oid=bd7e452f-a8be-43f7-86fa-9513b8ce95a9) form the basis for naming, ownership and more]*
+*[[Data areas](https://eita.equinor.com/companyea/?oid=bd7e452f-a8be-43f7-86fa-9513b8ce95a9) form the basis for naming, ownership and more. If you are unsure what data area something belongs to then contact someone from the EDM team!]*
 
 Level 1: Project
 Level 2: Project Schedule
 
-**Describe the lineage of data?**
+**Describe the existing lineage of data?**
 
 *[Individual fields might come from different sources so there might be multiple lineage paths. It might be worth consulting an enterprise data architect if needed to understand the full lineage]*
 
