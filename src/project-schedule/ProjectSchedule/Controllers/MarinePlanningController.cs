@@ -32,7 +32,7 @@ namespace ProjectSchedule.Controllers
         [SwaggerOperation()]
         [SwaggerResponse(200, "Success", typeof(MarinePlanningResponse))]
         [SwaggerResponse(400, "Bad Request")]
-        public ActionResult<MarinePlanningResponse> GetMarinePlanningsByInstallation(string id, [FromQuery(Name="page-size")]int pageSize = 25, [FromQuery(Name = "page-index")]int pageIndex = 1 )
+        public ActionResult<MarinePlanningResponse> GetPlanningActivitiesForMarinePlanningByFacilityCode(string id, [FromQuery(Name="page-size")]int pageSize = 25, [FromQuery(Name = "page-index")]int pageIndex = 1 )
         {
             try
             {
@@ -66,7 +66,7 @@ namespace ProjectSchedule.Controllers
                     responseEntries.Add(en);
                 }
                 var maxResults = _context.MarinePlanning.Where(f => f.FacilityCode == id).Count();
-                var MarinePlanning = new MarinePlanningResponse { MarinePlanEntries = responseEntries, Installation = id, LastSynchronized = DateTime.UtcNow.ToString("u"), Total = maxResults, NextLink = GetNextLink(pageSize, pageIndex, maxResults), PreviousLink = GetPreviousLink(pageSize, pageIndex) };
+                var MarinePlanning = new MarinePlanningResponse { MarinePlanEntries = responseEntries, Installation = id, Total = maxResults, NextLink = GetNextLink(pageSize, pageIndex, maxResults), PreviousLink = GetPreviousLink(pageSize, pageIndex) };
                 return Ok(MarinePlanning);
             }
             catch (Exception e)
