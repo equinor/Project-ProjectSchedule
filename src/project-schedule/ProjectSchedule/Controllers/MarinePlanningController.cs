@@ -17,7 +17,7 @@ namespace ProjectSchedule.Controllers
     [Route("marineplanning")]
     [ApiController]
     [Produces("application/json")]
-    //[Authorize(Policy = "Reader")]
+    [Authorize(Policy = "Reader")]
     public class MarinePlanningController : ControllerBase
     {
         private readonly DatabaseContext _context;
