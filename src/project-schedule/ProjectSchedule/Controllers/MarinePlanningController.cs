@@ -17,7 +17,7 @@ namespace ProjectSchedule.Controllers
     [Route("marineplanning")]
     [ApiController]
     [Produces("application/json")]
-    [Authorize(Policy = "Reader")]
+    //[Authorize(Policy = "Reader")]
     public class MarinePlanningController : ControllerBase
     {
         private readonly DatabaseContext _context;
@@ -49,6 +49,7 @@ namespace ProjectSchedule.Controllers
                         Finish = s.EstimatedFinish,
                         TypeLevel1 = s.TypeLevel1,
                         TypeLevel2 = s.TypeLevel2,
+                        LastSynchronized = s.LastSynchronized,
                         TypeLevel3 = s.TypeLevel3,
                         TypeLevel4 = s.TypeLevel4,
                         MarineOps = s.MarineOps,
