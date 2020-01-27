@@ -12,6 +12,7 @@ namespace project.schedule.Data
     public class DatabaseContext : DbContext
     {
         public DbSet<MarinePlanning> MarinePlanning { get; set; }
+        public DbSet<TransferStatus> TransferStatus { get; set; }
         public DatabaseContext()
         {
         }
@@ -32,6 +33,12 @@ namespace project.schedule.Data
             {
                 eb.HasNoKey();
                 eb.ToView("v_project_project_schedule_marine_planning_1_0");
+            });
+
+            modelBuilder.Entity<TransferStatus>(eb =>
+            {
+                eb.HasNoKey();
+                eb.ToView("v_transfer_status_1_0");
             });
         }
     }

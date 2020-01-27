@@ -44,6 +44,5 @@ namespace ProjectSchedule.Models.MarinePlanning
         public string[] PositionTagNumbers { get; set; }
         public string StartTagNumber { get; set; }
         public Map Map { get; set; }
-        public DateTime LastSynchronized { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace ProjectSchedule.Models.MarinePlanning
     {
         public string Installation { get; set; }
         public List<MarinePlanEntry> MarinePlanEntries { get; set; }
+        public DateTime LastSynchronized { get; set; }
 
         public string NextLink { get; set; }
         public string PreviousLink { get; set; }

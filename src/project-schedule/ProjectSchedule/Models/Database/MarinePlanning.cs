@@ -30,6 +30,5 @@ namespace project.schedule.Models.Database
         public string PositionTagNumbers { get; set; }
         public string StartTagNumber { get; set; }
         public string MapId { get; set; }
-        public DateTime LastSynchronized { get; set; }
     }
 }

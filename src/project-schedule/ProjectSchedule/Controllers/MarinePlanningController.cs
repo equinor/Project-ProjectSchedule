@@ -49,7 +49,6 @@ namespace ProjectSchedule.Controllers
                         Finish = s.EstimatedFinish,
                         TypeLevel1 = s.TypeLevel1,
                         TypeLevel2 = s.TypeLevel2,
-                        LastSynchronized = s.LastSynchronized,
                         TypeLevel3 = s.TypeLevel3,
                         TypeLevel4 = s.TypeLevel4,
                         MarineOps = s.MarineOps,
@@ -67,7 +66,7 @@ namespace ProjectSchedule.Controllers
                     responseEntries.Add(en);
                 }
                 var maxResults = _context.MarinePlanning.Where(f => f.FacilityCode == id).Count();
-                var MarinePlanning = new MarinePlanningResponse { MarinePlanEntries = responseEntries, Installation = id, Total = maxResults, NextLink = GetNextLink(pageSize, pageIndex, maxResults), PreviousLink = GetPreviousLink(pageSize, pageIndex) };
+                var MarinePlanning = new MarinePlanningResponse { MarinePlanEntries = responseEntries, Installation = id, Total = maxResults, NextLink = GetNextLink(pageSize, pageIndex, maxResults), PreviousLink = GetPreviousLink(pageSize, pageIndex), LastSynchronized =_context.TransferStatus.FirstOrDefault(f => f.DataSet== "Project.ProjectSchedule.MarinePlanning").LastSynchronized };
                 return Ok(MarinePlanning);
             }
             catch (Exception e)
