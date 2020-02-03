@@ -31,7 +31,7 @@ namespace ProjectSchedule.Controllers
         [HttpGet("{id}")]
         [SwaggerOperation()]
         [SwaggerResponse(200, "Success", typeof(MarinePlanningResponse))]
-        [SwaggerResponse(400, "Bad Request")]
+        [SwaggerResponse(400, "Bad Request", typeof(string))]
         public ActionResult<MarinePlanningResponse> GetPlanningActivitiesForMarinePlanningByFacilityCode(string id, [FromQuery(Name="page-size")]int pageSize = 25, [FromQuery(Name = "page-index")]int pageIndex = 1 )
         {
             try
