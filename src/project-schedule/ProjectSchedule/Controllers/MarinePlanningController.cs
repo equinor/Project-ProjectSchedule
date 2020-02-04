@@ -83,7 +83,7 @@ namespace ProjectSchedule.Controllers
             {
                 return null;
             }
-            var link = Url.Action("GetMarinePlanningsByInstallation") + $"?page-size={pageSize}&page-index={pageIndex-1}";
+            var link = Url.Action(nameof(GetPlanningActivitiesForMarinePlanningByFacilityCode)) + $"?page-size={pageSize}&page-index={pageIndex-1}";
             return link;
         }
 
@@ -93,7 +93,7 @@ namespace ProjectSchedule.Controllers
             {
                 return null;
             }
-            var link = Url.Action("GetMarinePlanningsByInstallation") + $"?page-size={pageSize}&page-index={pageIndex + 1}";
+            var link = Url.Action(nameof(GetPlanningActivitiesForMarinePlanningByFacilityCode)) + $"?page-size={pageSize}&page-index={pageIndex + 1}";
             return link;
         }
         
