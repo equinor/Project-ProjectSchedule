@@ -38,7 +38,7 @@ namespace ProjectSchedule
                 options.AddPolicy("Reader", policy => policy.Requirements.Add(new ScopeRequirement(new List<string> { "Project.Read" }, new List<string> { "Project.Reader" })));
             });
 
-            services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Project Schedule", Version = "v1", Description = $"Maintained by {Configuration["EnterpriseAPI:TeamName"]} \n\nUser delegated access requires scope: {Configuration["EnterpriseAPI:userdelegatedscope"]}\n\n Application access requires application role: {Configuration["EnterpriseAPI:applicationrole"]}"}));
+            services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Project Schedule", Version = "v1", Description = $"Maintained by {Configuration["EnterpriseAPI:TeamName"]} \n\n\n\n Authentication: \n\nUser delegated access requires scope: {Configuration["EnterpriseAPI:userdelegatedscope"]}\n\n Application access requires application role: {Configuration["EnterpriseAPI:applicationrole"]}\n\n\n\nSource Code and documentation at: {Configuration["EnterpriseAPI:github"]}" }));
 
 
             services.AddScoped<AuthenticationMockService>();
