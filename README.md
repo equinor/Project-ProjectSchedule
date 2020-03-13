@@ -1,7 +1,6 @@
 # Data Area: Project - Project Schedule 
 Code and information relating to data sharing within the *Project - Project Schedule* data area.
 
-
 ## Getting Access
 
 All requests to this API has to be authenticated and authorized, this requires all requests to pass along a valid OAuth2.0 token.
