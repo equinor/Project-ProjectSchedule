@@ -17,11 +17,11 @@ jobs:
         dotnet-version: 3.1.101
 
     - name: Build with dotnet
-      run: dotnet build --configuration Release /src/project-schedule/project-schedule.sln
+      run: dotnet build --configuration Release src/project-schedule/project-schedule.sln
     
     - name: dotnet publish
       run: |
-        dotnet publish /src/project-schedule/project-schedule.sln -c Release -o projectscheduleapidev
+        dotnet publish src/project-schedule/project-schedule.sln -c Release -o projectscheduleapidev
 
     - name: Azure Login
       uses: Azure/login@v1
