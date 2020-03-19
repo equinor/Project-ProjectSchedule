@@ -14,6 +14,12 @@ This section captures key requirements and decisions and that impact the design 
 
 ### Enterprise
 
+**Who are the potential consumers of this data and for what purposes might it be used**
+
+*[Potential user groups, business areas, systems, ...*
+
+> :warning: To complete
+
 **Has any necessary LRA been performed for making the data available and if necessary for usage, and what is the reference?**
 
 *[See the [legal risk assessment service](https://equinor.service-now.com/selfservice?id=kb_article&sys_id=c5acb55fdb610c94c293199f299619dd)]. In this service you can also ask questions about possible existing LRA's that might be in place*
