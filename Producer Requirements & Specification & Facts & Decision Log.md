@@ -115,9 +115,11 @@ Read of marine planning entries filtered upon installation.
 
 **Which format should the data have in OMNIA after transfer (e.g. DB or file type)?**
 
-
-
 **How will the data be modified, including but not limited to the contents, missing data, validation and transformation?**
+
+**Will you do any automated data integrity testing?**
+
+*[If so how will this be done - in real time, periodic monitoring, ...]*
 
 **Will you provide the source data in it's entirety, or only a subset?**
 
