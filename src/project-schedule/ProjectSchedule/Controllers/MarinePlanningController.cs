@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using project.schedule.Data;
 using project.schedule.Services;
@@ -20,12 +21,12 @@ namespace ProjectSchedule.Controllers
     [Authorize(Policy = "Reader")]
     public class MarinePlanningController : ControllerBase
     {
-        private readonly DatabaseContext _context;
+        private readonly DatabaseAdapter _databaseAdapter;
         private readonly ILogger<MarinePlanningController> _logger;
 
-        public MarinePlanningController(DatabaseContext context, ILogger<MarinePlanningController> logger)
+        public MarinePlanningController(IConfiguration config, ILogger<MarinePlanningController> logger)
         {
-            _context = context;
+            _databaseAdapter = new DatabaseAdapter(config["ConnectionString"]);
             _logger = logger;
         }
         [HttpGet("{id}")]
@@ -36,7 +37,7 @@ namespace ProjectSchedule.Controllers
         {
             try
             {
-                var entries = _context.MarinePlanning.Where(f => f.FacilityCode == id).OrderBy(f => f.EstimatedStart).Skip((pageIndex -1) * pageSize).Take(pageSize).ToList();
+                var entries = _databaseAdapter.GetPlanningActivitiesByFacilityCode(id, pageSize, pageIndex);
                 var responseEntries = new List<MarinePlanEntry>();
                 foreach (var s in entries)
                 {
@@ -65,8 +66,8 @@ namespace ProjectSchedule.Controllers
 
                     responseEntries.Add(en);
                 }
-                var maxResults = _context.MarinePlanning.Where(f => f.FacilityCode == id).Count();
-                var MarinePlanning = new MarinePlanningResponse { MarinePlanEntries = responseEntries, Installation = id, Total = maxResults, NextLink = GetNextLink(pageSize, pageIndex, maxResults), PreviousLink = GetPreviousLink(pageSize, pageIndex), LastSynchronized =_context.TransferStatus.FirstOrDefault(f => f.DataSet== "Project.ProjectSchedule.MarinePlanning").LastSynchronized };
+                var maxResults = _databaseAdapter.GetRowCountByFacilityCode(id);
+                var MarinePlanning = new MarinePlanningResponse { MarinePlanEntries = responseEntries, Installation = id, Total = maxResults, NextLink = GetNextLink(pageSize, pageIndex, maxResults), PreviousLink = GetPreviousLink(pageSize, pageIndex), LastSynchronized = _databaseAdapter.GetLastSynchronizedByDataset("Project.ProjectSchedule.MarinePlanning")};
                 return Ok(MarinePlanning);
             }
             catch (Exception e)
