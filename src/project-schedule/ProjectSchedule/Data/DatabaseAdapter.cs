@@ -29,8 +29,7 @@ namespace project.schedule.Data
                                 "    SELECT " +
                                 "        ROW_NUMBER() OVER(" +
                                 "             ORDER BY " +
-                                "                FacilityCode, " +
-                                "                SourceId" +
+                                "                EstimatedStart" +
                                 "        ) row_num, " +
                                 "        ppsmp.*" +
                                 "     FROM " +
@@ -116,9 +115,7 @@ namespace project.schedule.Data
                                 InstalledComponents = reader.IsDBNull(19) ? null : reader.GetString(19),
                                 PositionTagNumbers = reader.IsDBNull(20) ? null : reader.GetString(20),
                                 StartTagNumber = reader.IsDBNull(21) ? null : reader.GetString(21),
-                                MapId = reader.IsDBNull(22) ? null : reader.GetString(22),
-                                //SourceSystem = reader.GetString(1),
-                                //SourceId = reader.GetString(1),
+                                MapId = reader.IsDBNull(22) ? null : reader.GetString(22)
                             });
                         }
                     }
