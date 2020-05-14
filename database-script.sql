@@ -1,18 +1,21 @@
-USE [projectprojectschedule]
+USE [projectprojectschedulesqlprod]
 GO
-/****** Object:  DatabaseRole [marineplanning_reader]    Script Date: 03.02.2020 14:11:59 ******/
+/****** Object:  DatabaseRole [datafactory]    Script Date: 14.05.2020 12:21:44 ******/
+CREATE ROLE [datafactory]
+GO
+/****** Object:  DatabaseRole [marineplanning_reader]    Script Date: 14.05.2020 12:21:44 ******/
 CREATE ROLE [marineplanning_reader]
 GO
-/****** Object:  Schema [enterprise]    Script Date: 03.02.2020 14:11:59 ******/
+/****** Object:  Schema [enterprise]    Script Date: 14.05.2020 12:21:44 ******/
 CREATE SCHEMA [enterprise]
 GO
-/****** Object:  Schema [raw]    Script Date: 03.02.2020 14:11:59 ******/
+/****** Object:  Schema [raw]    Script Date: 14.05.2020 12:21:44 ******/
 CREATE SCHEMA [raw]
 GO
-/****** Object:  Schema [ref]    Script Date: 03.02.2020 14:11:59 ******/
+/****** Object:  Schema [ref]    Script Date: 14.05.2020 12:21:44 ******/
 CREATE SCHEMA [ref]
 GO
-/****** Object:  Table [enterprise].[project_project_schedule_marine_planning]    Script Date: 03.02.2020 14:11:59 ******/
+/****** Object:  Table [enterprise].[project_project_schedule_marine_planning]    Script Date: 14.05.2020 12:21:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -43,7 +46,17 @@ CREATE TABLE [enterprise].[project_project_schedule_marine_planning](
 	[MapId] [varchar](1000) NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  View [enterprise].[v_project_project_schedule_marine_planning_1_0]    Script Date: 03.02.2020 14:11:59 ******/
+GRANT DELETE ON [enterprise].[project_project_schedule_marine_planning] TO [datafactory] AS [dbo]
+GO
+GRANT INSERT ON [enterprise].[project_project_schedule_marine_planning] TO [datafactory] AS [dbo]
+GO
+GRANT REFERENCES ON [enterprise].[project_project_schedule_marine_planning] TO [datafactory] AS [dbo]
+GO
+GRANT SELECT ON [enterprise].[project_project_schedule_marine_planning] TO [datafactory] AS [dbo]
+GO
+GRANT UPDATE ON [enterprise].[project_project_schedule_marine_planning] TO [datafactory] AS [dbo]
+GO
+/****** Object:  View [enterprise].[v_project_project_schedule_marine_planning_1_0]    Script Date: 14.05.2020 12:21:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -77,7 +90,9 @@ SELECT [FacilityCode]
       ,[MapId]
   FROM [enterprise].[project_project_schedule_marine_planning]
 GO
-/****** Object:  Table [ref].[NetIdFacilityMapping]    Script Date: 03.02.2020 14:11:59 ******/
+GRANT SELECT ON [enterprise].[v_project_project_schedule_marine_planning_1_0] TO [marineplanning_reader] AS [dbo]
+GO
+/****** Object:  Table [ref].[NetIdFacilityMapping]    Script Date: 14.05.2020 12:21:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -87,7 +102,7 @@ CREATE TABLE [ref].[NetIdFacilityMapping](
 	[facility_code] [varchar](4) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [raw].[activity_texts]    Script Date: 03.02.2020 14:11:59 ******/
+/****** Object:  Table [raw].[activity_texts]    Script Date: 14.05.2020 12:21:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -106,7 +121,19 @@ CREATE TABLE [raw].[activity_texts](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [raw].[activities]    Script Date: 03.02.2020 14:11:59 ******/
+GRANT ALTER ON [raw].[activity_texts] TO [datafactory] AS [dbo]
+GO
+GRANT DELETE ON [raw].[activity_texts] TO [datafactory] AS [dbo]
+GO
+GRANT INSERT ON [raw].[activity_texts] TO [datafactory] AS [dbo]
+GO
+GRANT REFERENCES ON [raw].[activity_texts] TO [datafactory] AS [dbo]
+GO
+GRANT SELECT ON [raw].[activity_texts] TO [datafactory] AS [dbo]
+GO
+GRANT UPDATE ON [raw].[activity_texts] TO [datafactory] AS [dbo]
+GO
+/****** Object:  Table [raw].[activities]    Script Date: 14.05.2020 12:21:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -399,7 +426,19 @@ CREATE TABLE [raw].[activities](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [raw].[codeset]    Script Date: 03.02.2020 14:11:59 ******/
+GRANT ALTER ON [raw].[activities] TO [datafactory] AS [dbo]
+GO
+GRANT DELETE ON [raw].[activities] TO [datafactory] AS [dbo]
+GO
+GRANT INSERT ON [raw].[activities] TO [datafactory] AS [dbo]
+GO
+GRANT REFERENCES ON [raw].[activities] TO [datafactory] AS [dbo]
+GO
+GRANT SELECT ON [raw].[activities] TO [datafactory] AS [dbo]
+GO
+GRANT UPDATE ON [raw].[activities] TO [datafactory] AS [dbo]
+GO
+/****** Object:  Table [raw].[codeset]    Script Date: 14.05.2020 12:21:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -420,7 +459,19 @@ CREATE TABLE [raw].[codeset](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [raw].[networks]    Script Date: 03.02.2020 14:12:00 ******/
+GRANT ALTER ON [raw].[codeset] TO [datafactory] AS [dbo]
+GO
+GRANT DELETE ON [raw].[codeset] TO [datafactory] AS [dbo]
+GO
+GRANT INSERT ON [raw].[codeset] TO [datafactory] AS [dbo]
+GO
+GRANT REFERENCES ON [raw].[codeset] TO [datafactory] AS [dbo]
+GO
+GRANT SELECT ON [raw].[codeset] TO [datafactory] AS [dbo]
+GO
+GRANT UPDATE ON [raw].[codeset] TO [datafactory] AS [dbo]
+GO
+/****** Object:  Table [raw].[networks]    Script Date: 14.05.2020 12:21:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -479,11 +530,24 @@ CREATE TABLE [raw].[networks](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [raw].[v_project_project_schedule_marine_planning]    Script Date: 03.02.2020 14:12:00 ******/
+GRANT ALTER ON [raw].[networks] TO [datafactory] AS [dbo]
+GO
+GRANT DELETE ON [raw].[networks] TO [datafactory] AS [dbo]
+GO
+GRANT INSERT ON [raw].[networks] TO [datafactory] AS [dbo]
+GO
+GRANT REFERENCES ON [raw].[networks] TO [datafactory] AS [dbo]
+GO
+GRANT SELECT ON [raw].[networks] TO [datafactory] AS [dbo]
+GO
+GRANT UPDATE ON [raw].[networks] TO [datafactory] AS [dbo]
+GO
+/****** Object:  View [raw].[v_project_project_schedule_marine_planning]    Script Date: 14.05.2020 12:21:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 
 
@@ -519,24 +583,24 @@ at.field_value MapId
 from raw.activities a
 inner join raw.networks n on a.net_id = n.net_id
 inner join ref.NetIdFacilityMapping m on m.net_id = a.net_id
-left join raw.codeset c24 on c24.rfield_nr = 24 and c24.config_id = 6158 and c24.code = a.r24
-left join raw.codeset c23 on c23.rfield_nr = 23 and c23.config_id = 6158 and c23.code = a.r23
-left join raw.codeset c27 on c27.rfield_nr = 27 and c27.config_id = 6158 and c27.code = a.r27
-left join raw.codeset c8 on c8.rfield_nr = 8 and c8.config_id = 6158 and c8.code = a.r8
-left join raw.codeset c22 on c22.rfield_nr = 22 and c22.config_id = 6158 and c22.code = a.r22
-left join raw.codeset c16 on c16.rfield_nr = 16 and c16.config_id = 6158 and c16.code = a.r16
-left join raw.codeset c17 on c17.rfield_nr = 17 and c17.config_id = 6158 and c17.code = a.r17
-left join raw.codeset c18 on c18.rfield_nr = 18 and c18.config_id = 6158 and c18.code = a.r18
-left join raw.codeset c19 on c19.rfield_nr = 19 and c19.config_id = 6158 and c19.code = a.r19
-left join raw.codeset c4 on c4.rfield_nr = 4 and c4.config_id = 6158 and c4.code = a.r4
-left join raw.codeset c31 on c31.rfield_nr = 31 and c31.config_id = 6158 and c31.code = a.r31
-left join raw.codeset c33 on c33.rfield_nr = 33 and c33.config_id = 6158 and c33.code = a.r33
-left join raw.codeset c32 on c32.rfield_nr = 32 and c32.config_id = 6158 and c32.code = a.r32
-left join raw.codeset c15 on c15.rfield_nr = 15 and c15.config_id = 6158 and c15.code = a.r15
+left join raw.codeset c24 on c24.rfield_nr = 24 and c24.config_id = 5531 and c24.code = a.r24
+left join raw.codeset c23 on c23.rfield_nr = 23 and c23.config_id = 5531 and c23.code = a.r23
+left join raw.codeset c27 on c27.rfield_nr = 27 and c27.config_id = 5531 and c27.code = a.r27
+left join raw.codeset c8 on c8.rfield_nr = 8 and c8.config_id = 5472 and c8.code = a.r8
+left join raw.codeset c22 on c22.rfield_nr = 22 and c22.config_id = 5531 and c22.code = a.r22
+left join raw.codeset c16 on c16.rfield_nr = 16 and c16.config_id = 5472 and c16.code = a.r16
+left join raw.codeset c17 on c17.rfield_nr = 17 and c17.config_id = 5472 and c17.code = a.r17
+left join raw.codeset c18 on c18.rfield_nr = 18 and c18.config_id = 5472 and c18.code = a.r18
+left join raw.codeset c19 on c19.rfield_nr = 19 and c19.config_id = 5472 and c19.code = a.r19
+left join raw.codeset c4 on c4.rfield_nr = 4 and c4.config_id = 5472 and c4.code = a.r4
+left join raw.codeset c31 on c31.rfield_nr = 31 and c31.config_id = 5472 and c31.code = a.r31
+left join raw.codeset c33 on c33.rfield_nr = 33 and c33.config_id = 5472 and c33.code = a.r33
+left join raw.codeset c32 on c32.rfield_nr = 32 and c32.config_id = 5472 and c32.code = a.r32
+left join raw.codeset c15 on c15.rfield_nr = 15 and c15.config_id = 5472 and c15.code = a.r15
 left join raw.activity_texts at on at.field_nr = 39 and at.net_id = a.net_id and at.seq = a.seq
 where n.net_id = 6959
 GO
-/****** Object:  Table [enterprise].[transfer_status]    Script Date: 03.02.2020 14:12:00 ******/
+/****** Object:  Table [enterprise].[transfer_status]    Script Date: 14.05.2020 12:21:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -546,7 +610,17 @@ CREATE TABLE [enterprise].[transfer_status](
 	[LastSynchronized] [datetime] NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  View [enterprise].[v_transfer_status_1_0]    Script Date: 03.02.2020 14:12:00 ******/
+GRANT DELETE ON [enterprise].[transfer_status] TO [datafactory] AS [dbo]
+GO
+GRANT INSERT ON [enterprise].[transfer_status] TO [datafactory] AS [dbo]
+GO
+GRANT REFERENCES ON [enterprise].[transfer_status] TO [datafactory] AS [dbo]
+GO
+GRANT SELECT ON [enterprise].[transfer_status] TO [datafactory] AS [dbo]
+GO
+GRANT UPDATE ON [enterprise].[transfer_status] TO [datafactory] AS [dbo]
+GO
+/****** Object:  View [enterprise].[v_transfer_status_1_0]    Script Date: 14.05.2020 12:21:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -556,7 +630,9 @@ as
 select DataSet, LastSynchronized
 from enterprise.transfer_status
 GO
-/****** Object:  Table [raw].[activities_tmp]    Script Date: 03.02.2020 14:12:00 ******/
+GRANT SELECT ON [enterprise].[v_transfer_status_1_0] TO [marineplanning_reader] AS [dbo]
+GO
+/****** Object:  Table [raw].[activities_tmp]    Script Date: 14.05.2020 12:21:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -849,7 +925,19 @@ CREATE TABLE [raw].[activities_tmp](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [raw].[activity_texts_tmp]    Script Date: 03.02.2020 14:12:00 ******/
+GRANT ALTER ON [raw].[activities_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT DELETE ON [raw].[activities_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT INSERT ON [raw].[activities_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT REFERENCES ON [raw].[activities_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT SELECT ON [raw].[activities_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT UPDATE ON [raw].[activities_tmp] TO [datafactory] AS [dbo]
+GO
+/****** Object:  Table [raw].[activity_texts_tmp]    Script Date: 14.05.2020 12:21:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -868,7 +956,19 @@ CREATE TABLE [raw].[activity_texts_tmp](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [raw].[codeset_tmp]    Script Date: 03.02.2020 14:12:00 ******/
+GRANT ALTER ON [raw].[activity_texts_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT DELETE ON [raw].[activity_texts_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT INSERT ON [raw].[activity_texts_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT REFERENCES ON [raw].[activity_texts_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT SELECT ON [raw].[activity_texts_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT UPDATE ON [raw].[activity_texts_tmp] TO [datafactory] AS [dbo]
+GO
+/****** Object:  Table [raw].[codeset_tmp]    Script Date: 14.05.2020 12:21:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -889,7 +989,19 @@ CREATE TABLE [raw].[codeset_tmp](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [raw].[networks_tmp]    Script Date: 03.02.2020 14:12:00 ******/
+GRANT ALTER ON [raw].[codeset_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT DELETE ON [raw].[codeset_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT INSERT ON [raw].[codeset_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT REFERENCES ON [raw].[codeset_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT SELECT ON [raw].[codeset_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT UPDATE ON [raw].[codeset_tmp] TO [datafactory] AS [dbo]
+GO
+/****** Object:  Table [raw].[networks_tmp]    Script Date: 14.05.2020 12:21:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -948,7 +1060,19 @@ CREATE TABLE [raw].[networks_tmp](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [raw].[userfield_config]    Script Date: 03.02.2020 14:12:00 ******/
+GRANT ALTER ON [raw].[networks_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT DELETE ON [raw].[networks_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT INSERT ON [raw].[networks_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT REFERENCES ON [raw].[networks_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT SELECT ON [raw].[networks_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT UPDATE ON [raw].[networks_tmp] TO [datafactory] AS [dbo]
+GO
+/****** Object:  Table [raw].[userfield_config]    Script Date: 14.05.2020 12:21:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -978,7 +1102,19 @@ CREATE TABLE [raw].[userfield_config](
 	[inserted_time] [datetime] NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [raw].[userfield_config_tmp]    Script Date: 03.02.2020 14:12:00 ******/
+GRANT ALTER ON [raw].[userfield_config] TO [datafactory] AS [dbo]
+GO
+GRANT DELETE ON [raw].[userfield_config] TO [datafactory] AS [dbo]
+GO
+GRANT INSERT ON [raw].[userfield_config] TO [datafactory] AS [dbo]
+GO
+GRANT REFERENCES ON [raw].[userfield_config] TO [datafactory] AS [dbo]
+GO
+GRANT SELECT ON [raw].[userfield_config] TO [datafactory] AS [dbo]
+GO
+GRANT UPDATE ON [raw].[userfield_config] TO [datafactory] AS [dbo]
+GO
+/****** Object:  Table [raw].[userfield_config_tmp]    Script Date: 14.05.2020 12:21:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1008,6 +1144,18 @@ CREATE TABLE [raw].[userfield_config_tmp](
 	[inserted_time] [datetime] NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
+GRANT ALTER ON [raw].[userfield_config_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT DELETE ON [raw].[userfield_config_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT INSERT ON [raw].[userfield_config_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT REFERENCES ON [raw].[userfield_config_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT SELECT ON [raw].[userfield_config_tmp] TO [datafactory] AS [dbo]
+GO
+GRANT UPDATE ON [raw].[userfield_config_tmp] TO [datafactory] AS [dbo]
+GO
 ALTER TABLE [raw].[activities_tmp] ADD  CONSTRAINT [DF_activities_tmp_inserted_time]  DEFAULT (getdate()) FOR [inserted_time]
 GO
 ALTER TABLE [raw].[activity_texts_tmp] ADD  CONSTRAINT [DF_activity_texts_tmp_inserted_time]  DEFAULT (getdate()) FOR [inserted_time]
@@ -1018,7 +1166,7 @@ ALTER TABLE [raw].[networks_tmp] ADD  CONSTRAINT [DF_networks_tmp_inserted_time]
 GO
 ALTER TABLE [raw].[userfield_config_tmp] ADD  CONSTRAINT [DF_userfield_config_tmp_inserted_time]  DEFAULT (getdate()) FOR [inserted_time]
 GO
-/****** Object:  StoredProcedure [raw].[activities_import]    Script Date: 03.02.2020 14:12:00 ******/
+/****** Object:  StoredProcedure [raw].[activities_import]    Script Date: 14.05.2020 12:21:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1037,7 +1185,9 @@ TRUNCATE TABLE [raw].[activities];
 ALTER TABLE [raw].[activities_tmp] SWITCH TO [raw].[activities];
 
 GO
-/****** Object:  StoredProcedure [raw].[activity_texts_import]    Script Date: 03.02.2020 14:12:00 ******/
+GRANT EXECUTE ON [raw].[activities_import] TO [datafactory] AS [dbo]
+GO
+/****** Object:  StoredProcedure [raw].[activity_texts_import]    Script Date: 14.05.2020 12:21:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1057,7 +1207,9 @@ TRUNCATE TABLE [raw].[activity_texts];
 ALTER TABLE [raw].[activity_texts_tmp] SWITCH TO [raw].[activity_texts];
 
 GO
-/****** Object:  StoredProcedure [raw].[all_tables_import]    Script Date: 03.02.2020 14:12:00 ******/
+GRANT EXECUTE ON [raw].[activity_texts_import] TO [datafactory] AS [dbo]
+GO
+/****** Object:  StoredProcedure [raw].[all_tables_import]    Script Date: 14.05.2020 12:21:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1080,7 +1232,9 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [raw].[codeset_import]    Script Date: 03.02.2020 14:12:00 ******/
+GRANT EXECUTE ON [raw].[all_tables_import] TO [datafactory] AS [dbo]
+GO
+/****** Object:  StoredProcedure [raw].[codeset_import]    Script Date: 14.05.2020 12:21:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1099,7 +1253,9 @@ TRUNCATE TABLE [raw].[codeset];
 ALTER TABLE [raw].[codeset_tmp] SWITCH TO [raw].[codeset];
 
 GO
-/****** Object:  StoredProcedure [raw].[make_enterprise_data]    Script Date: 03.02.2020 14:12:00 ******/
+GRANT EXECUTE ON [raw].[codeset_import] TO [datafactory] AS [dbo]
+GO
+/****** Object:  StoredProcedure [raw].[make_enterprise_data]    Script Date: 14.05.2020 12:21:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1133,7 +1289,9 @@ BEGIN TRAN
 
 COMMIT
 GO
-/****** Object:  StoredProcedure [raw].[networks_import]    Script Date: 03.02.2020 14:12:00 ******/
+GRANT EXECUTE ON [raw].[make_enterprise_data] TO [datafactory] AS [dbo]
+GO
+/****** Object:  StoredProcedure [raw].[networks_import]    Script Date: 14.05.2020 12:21:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1152,7 +1310,9 @@ TRUNCATE TABLE [raw].[networks];
 ALTER TABLE [raw].[networks_tmp] SWITCH TO [raw].[networks];
 
 GO
-/****** Object:  StoredProcedure [raw].[truncate_all_tmp_tables]    Script Date: 03.02.2020 14:12:00 ******/
+GRANT EXECUTE ON [raw].[networks_import] TO [datafactory] AS [dbo]
+GO
+/****** Object:  StoredProcedure [raw].[truncate_all_tmp_tables]    Script Date: 14.05.2020 12:21:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1172,7 +1332,9 @@ BEGIN
 	TRUNCATE TABLE [raw].[userfield_config_tmp]
 END
 GO
-/****** Object:  StoredProcedure [raw].[userfield_config_import]    Script Date: 03.02.2020 14:12:00 ******/
+GRANT EXECUTE ON [raw].[truncate_all_tmp_tables] TO [datafactory] AS [dbo]
+GO
+/****** Object:  StoredProcedure [raw].[userfield_config_import]    Script Date: 14.05.2020 12:21:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1193,4 +1355,6 @@ SET NOCOUNT ON
 TRUNCATE TABLE [raw].[userfield_config];
 ALTER TABLE [raw].[userfield_config_tmp] SWITCH TO [raw].[userfield_config];
 
+GO
+GRANT EXECUTE ON [raw].[userfield_config_import] TO [datafactory] AS [dbo]
 GO
