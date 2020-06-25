@@ -10,7 +10,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using project.schedule.Data;
 using project.schedule.Services.Authorization;
-using ProjectSchedule.Services;
 using System.Collections.Generic;
 
 namespace ProjectSchedule
@@ -40,7 +39,6 @@ namespace ProjectSchedule
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Project Schedule", Version = "v1", Description = $"Maintained by {Configuration["EnterpriseAPI:TeamName"]} \n\n\n\n Authentication: \n\n\t\tUser delegated access requires scope: {Configuration["EnterpriseAPI:userdelegatedscope"]}\n\n\t\tApplication access requires application role: {Configuration["EnterpriseAPI:applicationrole"]}\n\n\n\nSource Code and documentation at: {Configuration["EnterpriseAPI:github"]}" }));
 
 
-            services.AddScoped<AuthenticationMockService>();
             services.AddTransient<IAuthorizationHandler, ScopeRequirementHandler>();
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
 

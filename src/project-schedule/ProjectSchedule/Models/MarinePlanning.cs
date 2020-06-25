@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProjectSchedule.Models.MarinePlanning
 {
@@ -16,13 +13,13 @@ namespace ProjectSchedule.Models.MarinePlanning
         public string Id { get; set; }
         public string Link { get; set; }
     }
-    
+
     public class Map
     {
         public string Id { get; set; }
         public string Link { get; set; }
     }
-    
+
     public class MarinePlanEntry
     {
         public string ActivityNumber { get; set; }
@@ -39,7 +36,7 @@ namespace ProjectSchedule.Models.MarinePlanning
         public string TypeLevel3 { get; set; }
         public string TypeLevel4 { get; set; }
         public System System { get; set; }
-        public Tags[] InstalledTags { get; set; } 
+        public Tags[] InstalledTags { get; set; }
         public string[] InstalledComponents { get; set; }
         public string[] PositionTagNumbers { get; set; }
         public string StartTagNumber { get; set; }
